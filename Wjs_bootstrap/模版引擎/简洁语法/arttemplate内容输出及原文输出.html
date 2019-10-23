@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arttemplate内容输出</title>
+    <style>
+        ul,li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="contentBox"></div>
+    <!-- 引入模版引擎js文件 -->
+    <script type="text/javascript" src="../template-web.js"></script>
+    <!-- 建立模版 -->
+    <!-- 标准语法输出表达式:
+
+            对内容编码输出：
+            {{value}}
+            {{data.key}}
+            {{data['key']}}
+            {{a || b}}
+            {{a + b}}
+            不编码输出：
+            {{@value}}
+     -->
+    <script type="text/html" id="contentId">
+        <ul>
+            <li>{{name}}</li>
+            <li>{{skill}}</li>
+            <li>{{@info}}</li>
+        </ul>
+    </script>
+    <!-- 模版数据填充 -->
+    <script>
+        var data = {
+            name:'小红',
+            skill:'购物',
+            info:'<a href = "htttp://www.baidu.com">个人信息</a>'
+        }
+        var result = template('contentId',data);
+        document.getElementById('contentBox').innerHTML = result;
+    </script>
+</body>
+</html>

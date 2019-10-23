@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arttemplate逻辑判断输出</title>
+    <style>
+        ul,li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="ifBox"></div>
+    <!-- 引入模版引擎js文件 -->
+    <script type="text/javascript" src="../template-web.js"></script>
+    <!-- 建立模版 -->
+    <!-- 标准语法：条件逻辑:
+            {{if value}}
+                ...
+            {{/if}}
+            {{if v1}}
+                ...
+            {{else if v2}}
+                ...
+            {{/if}}
+     -->
+    <script type="text/html" id="ifId">
+        <ul>
+            {{if sex=="女"}}
+                <li>姓名:{{name}}女士</li>
+                <li>爱好:{{like}}</li>
+            {{else if sex=="男"}}
+                <li>姓名:{{name}}先生</li>
+                <li>爱好:{{like}}</li>
+            {{/if}}
+        </ul>
+    </script>
+    <!-- 模版数据填充 -->
+    <script>
+        var person1 = {
+            name:'玲玲',
+            like:'购物',
+            sex:'女'
+        }
+        var person2 = {
+            name:'小明',
+            like:'游戏',
+            sex:'男'
+        }
+        var result = template('ifId',person1);
+        var result2 = template('ifId',person2);
+        document.getElementById('ifBox').innerHTML = result + result2;
+    </script>
+</body>
+</html>

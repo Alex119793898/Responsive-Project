@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+
+        div{
+            border: red 1px solid;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ifBox"></div>
+
+    <div id="norBox"></div>
+
+    <div id="eachBox"></div>
+
+<!--
+     引入模板引擎:一般用于在网络请求之后，展示相同的多条数据
+-->
+<script type="text/javascript" src="template-web.js" ></script>
+
+<!--
+     1.逻辑语句---条件语句的使用
+-->
+<script type="text/html" id="ifPersonTemplate">
+<ul>
+    {{if sex=="女"}}
+    <li>姓名:{{name}} 女士
+       <ol>
+           <li>最新款的包包</li>
+           <li>你真{{skill}}</li>
+       </ol>
+    </li>
+    {{else if sex=="男"}}
+    <li>姓名:{{name}} 先生
+        <ol>
+            <li>最新款的西装</li>
+            <li>你真{{skill}}</li>
+        </ol>
+    </li>
+    {{/if}}
+</ul>
+</script>
+<script type="text/javascript">
+
+    //定义数据
+    var person1 = {
+        name:"赵丽颖",
+        sex:"女",
+        skill:"可爱"
+    };
+
+    var person2 = {
+        name:"胡歌",
+        sex:"男",
+        skill:"帅气"
+    };
+
+    /**
+     * 利用模板引擎 引用数据填充到模板中
+     *
+     * 参数一：模板id
+     * 参数二：数据
+     */
+   var result =  template("ifPersonTemplate",person1);
+    var result2 =  template("ifPersonTemplate",person2);
+
+    //将返回的模板结果添加到界面中
+    var ifBox = document.getElementById("ifBox");
+    ifBox.innerHTML = result + result2;
+</script>
+
+<!--
+     2.原文输出
+-->
+<script type="text/html" id="norTemplate">
+     <ul>
+         <li>{{name}}</li>
+         <li>{{skill}}</li>
+         <li>{{@info}}</li>
+     </ul>
+</script>
+<script type="text/javascript">
+
+    var data = {
+       name:"漩涡鸣人",
+       skill:"多重影分身",
+       info:"<a href='https://baike.baidu.com/item/%E6%BC%A9%E6%B6%A1%E9%B8%A3%E4%BA%BA/322717?fr=aladdin'>个人信息</a>"
+    };
+
+    var result = template("norTemplate",data);
+
+    var norBox = document.getElementById("norBox");
+    norBox.innerHTML = result;
+
+</script>
+
+<!--
+     3.循环语句
+-->
+<script type="text/html" id="eachTemplate">
+
+     <ul>
+         <li>组织: {{key}}</li>
+         <li>组员:
+             {{each person}}
+               <ol> {{$index}}{{$value}} </ol>
+             {{/each}}
+         </li>
+
+         <li>组员信息:
+             {{each info}}
+             <ol>{{$value.name}} --- {{$value.age}} </ol>
+             {{/each}}
+         </li>
+     </ul>
+</script>
+<script type="text/javascript">
+      var family = {
+          key:"APP开饭团队",
+          person:[
+              "刘强",
+              "黄冲",
+              "熊斌"
+          ],
+          info:[
+              {name:"刘强",age:23},
+              {name:"黄冲",age:26},
+              {name:"熊斌",age:22}
+          ]
+      };
+
+      var result = template("eachTemplate",family);
+
+      var eachBox = document.getElementById("eachBox");
+      eachBox.innerHTML = result;
+</script>
+</body>
+</html>

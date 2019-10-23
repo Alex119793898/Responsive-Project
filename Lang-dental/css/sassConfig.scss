@@ -1,0 +1,41 @@
+@charset "utf-8";
+// 主色
+$color-main:#00aab7;
+// 辅助色
+$color-second:#b45d01;
+
+// 文字主色
+$text-main:#010101;
+// 文字辅色
+$text-second:#a0a0a0;
+
+$container:1200px;
+
+@mixin webkit($type,$value){
+    -webkit-#{$type}:$value;
+    -moz-#{$type}:$value;
+    -ms-#{$type}:$value;
+    -o-#{$type}:$value;
+    #{$type}:$value;
+}
+
+@mixin ell($number){
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:$number;
+    overflow: hidden;
+}
+
+// @mixin box-shadow($shadows...) {
+//   -moz-box-shadow: $shadows;
+//   -webkit-box-shadow: $shadows;
+//   box-shadow: $shadows;
+// }
+
+// @mixin sexy-border($color,$width){
+//     border: {
+//         color: $color;
+//         width: $width;
+//         style:dashed;
+//     }
+// }

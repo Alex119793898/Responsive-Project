@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arttemplate循环输出</title>
+    <style>
+        ul,li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="eachBox"></div>
+    <!-- 引入模版引擎js文件 -->
+    <script type="text/javascript" src="../template-web.js"></script>
+    <!-- 建立模版 -->
+    <!-- 标准语法：循环:
+            {{each target}}
+                {{$index}} {{$value}}
+            {{/each}}
+
+            1.target 支持 'array' 和 'object'，默认值为 '$data'
+            2.$value 和 $index 可以自定义：{{each target val key}}
+     -->
+    <script type="text/html" id="eachId">
+        <ul>
+            <li>组织:{{key}}</li>
+            <li>组员:
+                {{each person}}
+                <ol>{{$index}}{{$value}}</ol>
+                {{/each}}
+            </li>
+            <li>组员信息:
+                {{each info}}
+                <ol>{{$value.name}}—{{$value.age}}</ol>
+                {{/each}}
+            </li>
+        </ul>
+    </script>
+    <!-- 模版数据填充 -->
+    <script>
+        var family = {
+            key:'app开饭团队',
+            person:['小红','小蓝','小绿'],
+            info:[
+                {name:'小红',age:18},
+                {name:'小蓝',age:16},
+                {name:'小绿',age:19}
+                ]
+        };
+        var result = template('eachId',family);
+        document.getElementById('eachBox').innerHTML = result;
+
+    </script>
+</body>
+</html>

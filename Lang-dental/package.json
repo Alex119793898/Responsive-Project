@@ -1,0 +1,13 @@
+{
+  "name": "Lang-dental",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "main": "sass --watch websit/css/main.scss:websit/css/main.css --style expanded --sourcemap=none",
+    "common": "sass --watch websit/css/common.scss:websit/css/common.css --style expanded --sourcemap=none"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
